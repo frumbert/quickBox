@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>jQuery quickBox demo</title>
+		<style>
+			*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+			body { background: #eee ; }
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="jquery.quickBox.js"></script>
+		<script>
+		$(document).ready(function(){
+			// basic usage
+			$(".doit").quickBox();
+			
+			// applying defaults
+			$(".doit2").quickBox({
+				escape: true,
+				width: "50%",
+				overlay: "#ff00ff"
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<h1>quickBox - a no-frills modal overlay for jQuery.</h1>
+		<p>Original Size:	1.27KB gzipped (3.59KB uncompressed)</p>
+		<p>Minified Size:	1017 bytes gzipped (2.05KB uncompressed)</p>
+		<p>There's not a lot of error handling or overhead in this plugin, or care for IE8 or below (as it should be in 2014). It's expected that you just want a simple way to show data in an overlay without all the hoo-ha you get with some alternatives.</p>
+		<ul>
+			<li><a class='doit' href='#howdy' data-width="300" data-overlay="#ffcc33">Content from hidden div</a><br />
+				Loads content from an existing DOM object. Specify <code>href='#div-id'</code> on the link.</li>
+			<li><a class='doit' href='imagesLoaded/static.htm' data-escape="true" data-scrollable="true" data-height="100" data-width="200">From file using href</a><br />
+				Loads content from an external file. Specify <code>href='/path/to/file.htm'</code> on the link.</li>
+			<li><a class='doit' href='#' data-overlay="white" data-escape="false" data-content="here is the content for the popup." data-width="50%" data-escape="true">Content from data-attributes</a><br />
+				Set content and other properties using data-attributes on the link, <code>data-content='The content goes here'</code>.</li>
+			<li><a class='doit2' href='#' data-content="blah blah this seems to be working.">Using defaults in constructor</a><br />
+				Different display properties can be set from the constructor. <code>$('a').quickBox({overlay:'#f0f'});</code></li>
+			<li><a class='doit2' href='imagesLoaded/saved_resource(22).jpg' data-width='auto'>Image linked in href, width auto</a><br />
+				You can specify an image as the link <code>href='/path/to/image.jpg'</code>; we wait for the image to load first.</li>
+			<li><a class='doit' href='#' data-content="<iframe width='560' height='315' src='//www.youtube.com/embed/WQO-aOdJLiw' frameborder='0' allowfullscreen></iframe>">Embed a youtube video</a><br />
+				Stick the youtube iframe embed in the data-content attribute.</li>
+		</ul>
+
+		<h2>Settings</h2>
+		<p>Settings can be set in the constructor, or over-ridden on individual links by using html5 data attributes. See the examples above for more information.</p>
+		<p>Default settings are:</p>
+		<p><pre>
+{
+	width: "auto",				// can be "auto", or "50%", or "50px", or "25em", etc
+	height: "auto",				// can be "autp", or "75%", or "500px", or "5em", etc
+	scrollable: false,			// if height is not "auto", then allows overflow-y to scroll
+	escape: false,				// if you want to allow pressing escape to hide the box
+	overlay: "#000"				// overlay is shown at 50% opacity of this colour
+}
+		</pre></p>
+
+		<h2>Licence</h2>
+		MIT Licence.
+		
+		<div id="howdy" style="display: none">
+			<h1>Hi</h1>
+			<p>This is content inside a div.</p>
+			<p>Not much to it.</p>
+		</div>
+	</body>
+</html>
